@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="wrap site-header__inner">
+                <a class="brand" href="{{ url_for('index') }}">
+                    <span class="brand__mark">AF</span>
+                    <span>
+                        <strong>Profilöversikt</strong>
+                        <small>Kandidatprofiler som kan granskas snabbt</small>
+                    </span>
+                </a>
+
+                <nav class="site-nav">
+                    <a href="{{ url_for('index') }}">Startsida</a>
+                    {% if admin_logged_in %}
+                        <a href="{{ url_for('admin_add') }}">Lägg till profil</a>
+                    {% else %}
+                        <a href="#admin-panel">Admin</a>
+                    {% endif %}
+                </nav>
+            </div>
+        </header>
+
+        <main class="wrap page-content">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <section class="flash-stack" aria-label="Meddelanden">
+                        {% for category, message in messages %}
+                            <div class="flash flash--{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </section>
+                {% endif %}
+            {% endwith %}
+
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="wrap site-footer">
+            Profilerna visas på startsidan. Endast admin kan ändra innehållet.
+        </footer>
+    </div>
+</body>
+</html>

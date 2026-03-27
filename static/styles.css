@@ -1,0 +1,466 @@
+:root {
+    --bg: #f6f1e8;
+    --paper: rgba(255, 252, 246, 0.96);
+    --ink: #26221d;
+    --muted: #72685c;
+    --line: rgba(38, 34, 29, 0.14);
+    --accent: #85523a;
+    --accent-soft: #b18463;
+    --shadow: 0 8px 18px rgba(57, 41, 26, 0.05);
+    --radius-xl: 26px;
+    --radius-lg: 18px;
+    --radius-md: 14px;
+    --wrap: min(920px, calc(100% - 2rem));
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    color: var(--ink);
+    font-family: "Aptos", "Segoe UI", sans-serif;
+    background: linear-gradient(180deg, #fbf8f3 0%, var(--bg) 100%);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+.wrap {
+    width: var(--wrap);
+    margin: 0 auto;
+}
+
+.page-shell {
+    min-height: 100vh;
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    background: rgba(251, 248, 243, 0.88);
+    border-bottom: 1px solid var(--line);
+}
+
+.site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.brand strong,
+.intro h1,
+.section-heading h2,
+.admin-panel h2,
+.admin-page h1,
+.profile-card h3 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+}
+
+.brand small {
+    display: block;
+    color: var(--muted);
+    margin-top: 0.2rem;
+}
+
+.brand__mark {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1rem;
+    display: grid;
+    place-items: center;
+    color: #fffaf5;
+    font-weight: 700;
+    background: var(--accent);
+}
+
+.site-nav {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.site-nav a {
+    padding: 0.72rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: rgba(255, 252, 246, 0.58);
+}
+
+.page-content {
+    padding: 2.2rem 0 4rem;
+}
+
+.flash-stack {
+    display: grid;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.flash {
+    padding: 1rem 1.2rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line);
+    background: rgba(255, 252, 246, 0.92);
+}
+
+.flash--success {
+    background: rgba(234, 241, 228, 0.96);
+}
+
+.flash--error {
+    background: rgba(252, 233, 228, 0.96);
+}
+
+.section-kicker {
+    margin: 0 0 0.75rem;
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.profile-card,
+.admin-page,
+.admin-form,
+.empty-state {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xl);
+    background: var(--paper);
+    box-shadow: var(--shadow);
+}
+
+.intro,
+.admin-page,
+.admin-form,
+.empty-state {
+    padding: clamp(1.4rem, 3vw, 2.3rem);
+}
+
+.intro {
+    max-width: 44rem;
+    padding: 0.5rem 0 0.25rem;
+}
+
+.profile-card::before,
+.admin-page::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 0.28rem;
+    background: linear-gradient(90deg, var(--accent), rgba(133, 82, 58, 0));
+}
+
+.intro h1 {
+    margin: 0;
+    max-width: 11ch;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 0.96;
+}
+
+.intro__lead,
+.profile-card__description,
+.admin-page__intro p,
+.site-footer {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.profiles-section {
+    margin-top: 1.2rem;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: end;
+    margin-bottom: 1rem;
+}
+
+.section-note {
+    margin: 0;
+    color: var(--muted);
+}
+
+.section-heading h2,
+.admin-panel h2,
+.admin-page h1 {
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    line-height: 1;
+}
+
+.profiles-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.profile-card {
+    padding: 1.5rem;
+    display: grid;
+    gap: 1rem;
+    background: rgba(255, 252, 246, 0.82);
+}
+
+.profile-card__top {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: center;
+}
+
+.profile-avatar {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    display: grid;
+    place-items: center;
+    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-size: 1.35rem;
+    color: #fffaf5;
+    background: var(--accent);
+}
+
+.profile-card h3 {
+    margin: 0;
+    font-size: 2rem;
+    line-height: 0.96;
+    overflow-wrap: anywhere;
+}
+
+.profile-card__age {
+    margin: 0.35rem 0 0;
+    color: var(--muted);
+}
+
+.profile-facts {
+    display: grid;
+    gap: 0.9rem;
+    margin: 0;
+}
+
+.profile-facts div {
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--line);
+}
+
+.profile-facts dt {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.profile-facts dd {
+    margin: 0.35rem 0 0;
+    font-weight: 600;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.profile-card__actions,
+.admin-form__actions,
+.admin-panel__actions {
+    display: flex;
+    gap: 0.85rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.admin-panel {
+    margin-top: 2rem;
+    padding: 1.2rem 0 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.95fr);
+    gap: 1rem;
+    align-items: center;
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.admin-panel h2 {
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+}
+
+.admin-panel__copy p {
+    margin: 0.4rem 0 0;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.login-form {
+    display: grid;
+    gap: 0.85rem;
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    background: rgba(255, 252, 246, 0.52);
+}
+
+.login-form > input[type="hidden"],
+.admin-form > input[type="hidden"],
+.profile-card__actions input[type="hidden"],
+.admin-panel__actions input[type="hidden"] {
+    display: none;
+}
+
+.login-form label,
+.admin-form label {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.login-form span,
+.admin-form span {
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.admin-form-section {
+    margin-top: 1rem;
+}
+
+.admin-form {
+    display: grid;
+    gap: 1.2rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.form-grid--single {
+    grid-template-columns: 1fr;
+}
+
+input,
+textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    background: rgba(255, 252, 247, 0.96);
+    border-radius: 1rem;
+    padding: 0.95rem 1rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+input:focus,
+textarea:focus {
+    border-color: rgba(133, 82, 58, 0.55);
+    box-shadow: 0 0 0 4px rgba(133, 82, 58, 0.12);
+    transform: translateY(-1px);
+}
+
+textarea {
+    min-height: 10rem;
+    resize: vertical;
+}
+
+.profile-card__description {
+    overflow-wrap: anywhere;
+}
+
+.button {
+    appearance: none;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 0.92rem 1.3rem;
+    cursor: pointer;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.button:hover {
+    transform: translateY(-1px);
+}
+
+.button--primary {
+    color: #fffaf5;
+    background: var(--accent);
+    box-shadow: none;
+}
+
+.button--secondary {
+    color: var(--ink);
+    background: rgba(255, 252, 246, 0.88);
+    border-color: var(--line);
+}
+
+.button--danger {
+    color: #8f352b;
+    background: rgba(169, 57, 42, 0.08);
+    border-color: rgba(169, 57, 42, 0.18);
+}
+
+.empty-state {
+    text-align: center;
+}
+
+.site-footer {
+    padding-bottom: 2.5rem;
+}
+
+@media (max-width: 800px) {
+    .admin-panel,
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+        align-items: start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 640px) {
+    .site-header__inner,
+    .site-nav,
+    .profile-card__top,
+    .profile-card__actions,
+    .admin-form__actions,
+    .admin-panel__actions {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .button,
+    .site-nav a {
+        width: 100%;
+        text-align: center;
+    }
+}

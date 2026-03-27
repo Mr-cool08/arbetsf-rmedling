@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "namn": "Anna Berg",
+    "alder": "34",
+    "utbildning": "YH-utbildning i projektledning",
+    "erfarenheter": "8 års erfarenhet av projektledning inom service och leverans.",
+    "beskrivning": "Strukturerad och trygg person som gillar att skapa ordning och hålla ihop team."
+  },
+  {
+    "id": 2,
+    "namn": "Johan Lind",
+    "alder": "29",
+    "utbildning": "Gymnasieutbildning inom administration",
+    "erfarenheter": "5 års erfarenhet av administration, bokning och intern support.",
+    "beskrivning": "Noggrann och lugn administratör med tydligt fokus på service och struktur."
+  },
+  {
+    "id": 3,
+    "namn": "Sara Holm",
+    "alder": "31",
+    "utbildning": "Kandidatexamen i företagsekonomi",
+    "erfarenheter": "6 års erfarenhet av försäljning, kundrelationer och offertarbete.",
+    "beskrivning": "Social och målinriktad person som bygger förtroende snabbt och arbetar långsiktigt."
+  }
+]

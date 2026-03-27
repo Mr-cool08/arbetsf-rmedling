@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="intro">
+    <p class="section-kicker">Kandidatöversikt</p>
+    <h1>Hitta rätt profil snabbare.</h1>
+    <p class="intro__lead">
+        Varje profil visar det viktigaste för en första bedömning: namn, ålder, utbildning,
+        erfarenheter och en kort beskrivning.
+    </p>
+</section>
+
+<section class="profiles-section">
+    <div class="section-heading">
+        <div>
+            <p class="section-kicker">Profiler</p>
+            <h2>Alla profiler</h2>
+        </div>
+        <p class="section-note">{{ profiles|length }} profiler i listan</p>
+    </div>
+
+    {% if profiles %}
+        <div class="profiles-list">
+            {% for profile in profiles %}
+                <article class="profile-card">
+                    <div class="profile-card__top">
+                        <div class="profile-avatar">{{ profile.initialer }}</div>
+                        <div>
+                            <h3>{{ profile.namn }}</h3>
+                            <p class="profile-card__age">{{ profile.alder }} år</p>
+                        </div>
+                    </div>
+
+                    <dl class="profile-facts">
+                        <div>
+                            <dt>Utbildning</dt>
+                            <dd>{{ profile.utbildning }}</dd>
+                        </div>
+                        <div>
+                            <dt>Erfarenheter</dt>
+                            <dd>{{ profile.erfarenheter }}</dd>
+                        </div>
+                    </dl>
+
+                    <p class="profile-card__description">{{ profile.beskrivning }}</p>
+
+                    {% if admin_logged_in %}
+                        <div class="profile-card__actions">
+                            <form method="post" action="{{ url_for('delete_profile', profile_id=profile.id) }}" onsubmit="return confirm('Ta bort profilen för {{ profile.namn }}?');">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                                <button class="button button--danger" type="submit">Ta bort</button>
+                            </form>
+                        </div>
+                    {% endif %}
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <p>Inga profiler finns ännu. Logga in som admin för att lägga till den första personen.</p>
+        </div>
+    {% endif %}
+</section>
+
+<section class="admin-panel" id="admin-panel">
+    {% if admin_logged_in %}
+        <div class="admin-panel__copy">
+            <p class="section-kicker">Adminläge</p>
+            <h2>Hantera profiler</h2>
+            <p>Lägg till en ny profil på adminsidan eller ta bort en befintlig direkt från listan.</p>
+        </div>
+        <div class="admin-panel__actions">
+            <a class="button button--primary" href="{{ url_for('admin_add') }}">Lägg till profil</a>
+            <form method="post" action="{{ url_for('admin_logout') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                <button class="button button--secondary" type="submit">Logga ut</button>
+            </form>
+        </div>
+    {% else %}
+        <div class="admin-panel__copy">
+            <p class="section-kicker">Admin</p>
+            <h2>Logga in som admin</h2>
+            <p>Endast admin kan lägga till nya profiler eller ta bort befintliga.</p>
+        </div>
+        <form class="login-form" method="post" action="{{ url_for('admin_login') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <label>
+                <span>Användarnamn</span>
+                <input type="text" name="username" placeholder="Admin" required>
+            </label>
+            <label>
+                <span>Lösenord</span>
+                <input type="password" name="password" placeholder="Lösenord" required>
+            </label>
+            <button class="button button--primary" type="submit">Logga in</button>
+        </form>
+    {% endif %}
+</section>
+{% endblock %}

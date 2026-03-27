@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="admin-page">
+    <div class="admin-page__intro">
+        <p class="section-kicker">Admin</p>
+        <h1>Lägg till en ny profil</h1>
+        <p>Det du fyller i här visas direkt på startsidan. Håll texten kort och tydlig.</p>
+    </div>
+</section>
+
+<section class="admin-form-section">
+    <form method="post" class="admin-form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <div class="form-grid">
+            <label>
+                <span>Namn</span>
+                <input type="text" name="namn" maxlength="80" placeholder="Ex. Erik Svensson" required>
+            </label>
+            <label>
+                <span>Ålder</span>
+                <input type="number" min="16" max="100" name="alder" placeholder="Ex. 32" required>
+            </label>
+            <label>
+                <span>Utbildning</span>
+                <input type="text" name="utbildning" maxlength="120" placeholder="Ex. YH inom administration" required>
+            </label>
+            <label>
+                <span>Erfarenheter</span>
+                <input type="text" name="erfarenheter" maxlength="160" placeholder="Ex. 7 års erfarenhet av kundservice" required>
+            </label>
+        </div>
+
+        <label class="form-grid form-grid--single">
+            <span>Kort beskrivning</span>
+            <textarea name="beskrivning" maxlength="280" placeholder="Skriv en kort beskrivning av personen." required></textarea>
+        </label>
+
+        <div class="admin-form__actions">
+            <button class="button button--primary" type="submit">Spara profil</button>
+            <a class="button button--secondary" href="{{ url_for('index') }}">Tillbaka till startsidan</a>
+        </div>
+    </form>
+</section>
+{% endblock %}
