@@ -7,11 +7,12 @@ from dataclasses import asdict, dataclass
 from functools import wraps
 from pathlib import Path
 from typing import Callable, List
-
+from dotenv import load_dotenv
 from flask import Flask, flash, redirect, render_template, request, session, url_for
-
+load_dotenv()
 app = Flask(__name__)
-app.secret_key = "dev-secret-key-bytes-ut-i-produktion"
+
+app.secret_key =  os.getenv("ADMIN_SECRET_KEY", "OEWRHREWOIHROIHWLOIHGOIWRHGOIHWIOGOLIWRHGH")
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_FILE = BASE_DIR / "profiles.json"
